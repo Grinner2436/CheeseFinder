@@ -1,0 +1,35 @@
+plugins {
+    id 'org.jetbrains.intellij' version '1.5.3'
+    id 'java'
+}
+
+group 'com.grinner'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version = '2021.3.2'
+    plugins = ['com.intellij.java']
+}
+patchPluginXml {
+    changeNotes = """
+      我的奶酪不见了！<br>
+      <em>谁动了我的奶酪？</em>"""
+}
+test {
+    useJUnitPlatform()
+}
